@@ -1,5 +1,5 @@
 
-var jsDrawing = [];
+var jsDrawing = {};
 
 jsDrawing.createCanvas = function (parent, width, height) {
     var canvas = {};
@@ -7,17 +7,16 @@ jsDrawing.createCanvas = function (parent, width, height) {
     canvas.context = canvas.node.getContext('2d');
     canvas.node.width = width || 100;
     canvas.node.height = height || 100;
-    parent.appendChild(canvas.node);
+    document.querySelector(parent).appendChild(canvas.node);
     return canvas;
 }
 
 jsDrawing.init = function (element, width, height, fillColor) {
 
-    var container = document.querySelector(element);
-    var canvas = jsDrawing.createCanvas(container, width, height);
+    var canvas = jsDrawing.createCanvas(element, width, height);
     var ctx = canvas.context;
 
-    canvas.drawColor = fillColor;
+    canvas.drawColor = fillColor || '#000';
     canvas.drawWidth = 5;
     canvas.isDrawing = false;
 
